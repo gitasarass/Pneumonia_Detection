@@ -1,0 +1,106 @@
+:root{
+    --primary-color : #0074B6;
+    --button-color : #86B6F6;
+    --blue-color : #C4DDFF;
+    --text-color : #151515;
+    --grey-color : #ABABAB;
+    --subtext-color : #4A4A4A;
+}
+
+.form-setting-admin {
+    display: flex;
+    margin-left: 110px;
+    margin-top: 10px;
+    width: 940px;
+    height: 50px;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid var(--blue-color);
+    outline: none;
+    font-size: 16px;
+  }
+
+
+  .form-setting-admin input {
+    width: 400px;
+    margin-left: 30px;
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+
+  .data-setting-admin {
+    margin-bottom: 80px;
+  }
+
+  .data-setting-admin p {
+    margin-left: 110px;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--subtext-color);
+}
+
+.row-container-setting-admin {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-top: 1rem;
+}
+
+.column-container-setting-admin {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.text-form-admin{
+    margin-top: 13px;
+    margin-left: 30px;
+}
+
+.column-container-setting-container-admin {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.btn-save-profil {
+    background-color: var(--button-color);
+    height: 50px;
+    width: 200px;
+    font-size: 16px;
+    margin-left: 520px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    color: #fff;
+}
+
+.btn-save-profil:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-edit-profil {
+    border-radius: 10px;
+}
+
+.btn-edit-profil:hover{
+    background-color: var(--button-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+

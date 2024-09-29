@@ -1,0 +1,255 @@
+import React, { useState, useEffect } from 'react';
+import { IoNotificationsSharp } from "react-icons/io5";
+import './DataPneumonia.css';
+import { useLocation, Link } from 'react-router-dom';
+import { auth, db } from '../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { ClipLoader } from 'react-spinners';
+import blank_image from '../assets/blank_image.png'; 
+
+function DataPneumonia() {
+    const location = useLocation();
+    const { patientId } = location.state || {};
+    const [patientData, setPatientData] = useState(null);
+    const [userDetails, setUserDetails] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const fetchUserData = async () => {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                try {
+                    const docRef = doc(db, "users", user.uid);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        setUserDetails(docSnap.data());
+                    } else {
+                        console.log("User document does not exist");
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                } finally {
+                    setLoading(false);
+                }
+            } else {
+                console.log("User is not logged in");
+                setLoading(false);
+            }
+        });
+    };
+
+    const fetchPatientData = async () => {
+        try {
+            if (!patientId) {
+                console.log('Patient ID not provided');
+                setLoading(false);
+                return;
+            }
+            const patientDoc = doc(db, 'patients', patientId);
+            const patientSnap = await getDoc(patientDoc);
+            if (patientSnap.exists()) {
+                setPatientData(patientSnap.data());
+            } else {
+                console.log('Patient data not found');
+            }
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching patient data:', error);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserData();
+        fetchPatientData();
+    }, [patientId]);
+
+    if (loading) {
+        return (
+            <div className="loader-container">
+                <ClipLoader size={50} color={"#123abc"} loading={loading} />
+            </div>
+        );
+    }
+
+    if (!userDetails || !patientData) {
+        return <div>Data not found or user not authenticated</div>;
+    }
+
+    return (
+        <React.Fragment>
+            <div className='App'>
+                <div className='header-db'>
+                    <div className='top-headers'>
+                        <div className='list-tops'>
+                            <div className='notification-tops'>
+                                <IoNotificationsSharp className='icon-headers' />
+                            </div>
+                            <div className='image-tops'>
+                                <img src={userDetails.photo || blank_image} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='name-headers'>
+                        <p>
+                            Cek Pneumonia
+                        </p>
+                    </div>
+
+                    <div className='container-pages'>
+                        <div className='title-container'>
+                            <ul>Cek Pneumonia</ul>
+                            <p>- Data Pasien</p>
+                        </div>
+                        <div className='line-container' />
+
+                        <div className='row-container'>
+                            <div className='column-container'>
+                                <form className='data-patient'>
+                                    <p>No Pasien</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.patientNo}</p>
+                                    </div>
+
+                                    <p>Nama Lengkap</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.fullName}</p>
+                                    </div>
+
+                                    <p>Kota Tempat Lahir</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.birthPlace}</p>
+                                    </div>
+
+                                    <p>Tanggal lahir</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.birthDate}</p>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div className='column-container'>
+                                <form className='data-patient'>
+                                    <p>Jenis Kelamin</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.genderPatient}</p>
+                                    </div>
+
+                                    <p>TB</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.height}</p>
+                                    </div>
+
+                                    <p>BB</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.weight}</p>
+                                    </div>
+
+                                    <p>Golongan Darah</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.bloodType}</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+
+                    <div className='container-pages'>
+                        <div className='title-container'>
+                            <ul>Data Pasien</ul>
+                            <p>- Status Pasien</p>
+                        </div>
+                        <div className='line-container' />
+
+                        <div className='column-container'>
+                            <form className='data-patients'>
+                                <p>Status Pasien</p>
+                                <div className='form-datas'>
+                                    <p>Pasien {patientData?.typePatient}</p>
+                                </div>
+
+                                <p>Nomor BPJS</p>
+                                <div className='form-datas'>
+                                    <p>{patientData?.bpjsNumber}</p>
+                                </div>
+                            </form>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+
+                    <div className='container-pages'>
+                        <div className='title-container'>
+                            <ul>Data Pasien </ul>
+                            <p>- Penanggung Jawab</p>
+                        </div>
+                        <div className='line-container' />
+
+                        <div className='row-container'>
+                            <div className='column-container'>
+                                <div className='data-patient'>
+                                    <p>Nama</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.guardianName}</p>
+                                    </div>
+
+                                    <p>Hubungan Dengan Pasien</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.relationPatient}</p>
+                                    </div>
+
+                                    <p>Alamat</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.guardianAddress}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='column-container'>
+                                <div className='data-patient'>
+                                    <p>Jenis Kelamin</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.genderPerson}</p>
+                                    </div>
+
+                                    <p>Pekerjaan</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.guardianOccupation}</p>
+                                    </div>
+
+                                    <p>Nomor Telepon</p>
+                                    <div className='form-data'>
+                                        <p>{patientData?.PhoneNumber}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+
+                    <br />
+                    <Link to={{ pathname: '/dashboard/pneumonia/form_pneumonia', state: { patientId } }}>
+                        <button className='btn-form-pneumonia'>
+                            Selanjutnya
+                        </button>
+                    </Link>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </React.Fragment>
+    );
+}
+
+export default DataPneumonia;

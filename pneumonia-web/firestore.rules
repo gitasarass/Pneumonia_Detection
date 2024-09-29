@@ -1,0 +1,38 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Rules for users collection
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Rules for admins collection
+    match /admins/{adminId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if request.auth != null && request.auth.uid == adminId;
+    }
+
+    // Rules for users with admin privilege to read users' documents
+    match /users/{document=**} {
+      allow read: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Rules for patients collection
+    match /patients/{document} {
+      // Allow read for authenticated users
+      allow read: if request.auth != null;
+      
+      // Allow create, update, delete for authenticated users
+      allow create, update, delete: if request.auth != null;
+    }
+
+    // Rules for doctors collection
+    match /doctors/{document} {
+      // Allow read for authenticated users
+      allow read: if request.auth != null;
+      
+      // Allow create, update, delete for authenticated users
+      allow create, update, delete: if request.auth != null;
+    }
+  }
+}

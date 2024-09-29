@@ -1,0 +1,71 @@
+:root{
+    --primary-color : #0074B6;
+    --button-color : #86B6F6;
+    --blue-color : #C4DDFF;
+    --text-color : #151515;
+    --grey-color : #ABABAB;
+    --subtext-color : #4A4A4A;
+  }
+
+
+.sidebar-list-admin {
+    background-color: var(--primary-color);
+    transition: 0.5s;
+    margin-top: 60px;
+}
+
+.btn-list-admin {
+    margin-top: 30px;
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+    background-color: var(--button-color);
+    border-radius: 10px;
+    color: beige;
+}
+
+.icon-list-admin {
+    height: 30px;
+    width: 24px;
+    margin-left: 6px;
+    color: #fff;
+}
+
+.icon-list-admin:hover {
+    color: var(--primary-color);
+}
+
+.menu-items-admin {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 2.5rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    position: relative;
+    transition: box-shadow 300ms ease, opacity 300ms ease, transform 300ms ease;
+    box-shadow: none;
+    font-size: 18px;
+    color: var(--button-color);
+}
+
+.menu-items-admin:hover {
+    cursor: pointer;
+}
+
+.active {
+    background: var(--button-color);
+    margin-left: 0;
+    width: 300px;
+    color: #fff;
+    opacity: 1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Efek bayangan halus */
+}
+
+.active::before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    background: var(--blue-color);
+    margin-right: calc(1rem -5px);
+}

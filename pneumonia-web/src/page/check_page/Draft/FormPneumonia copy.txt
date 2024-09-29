@@ -1,0 +1,179 @@
+import React, { useState, useEffect } from 'react';
+import { IoNotificationsSharp } from "react-icons/io5";
+import './FormPneumonia.css';
+import { FaUpload } from "react-icons/fa";
+import { auth, db } from '../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import DataTable from 'react-data-table-component';
+import { ClipLoader } from 'react-spinners';
+import { useLocation } from 'react-router-dom';
+
+function FormPneumonia() {
+    const location = useLocation();
+    const { patientId } = location.state || {};
+    const [userDetails, setUserDetails] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [patientData, setPatientData] = useState(null);
+    const [file, setFile] = useState(null);
+    const [preview, setPreview] = useState(null);
+
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+        setPreview(URL.createObjectURL(e.target.files[0]));
+    };
+
+    const fetchUserData = async () => {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                console.log("User is logged in:", user);
+                try {
+                    const docRef = doc(db, "users", user.uid);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        console.log("User data:", docSnap.data());
+                        setUserDetails(docSnap.data());
+                    } else {
+                        console.log("User document does not exist");
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                } finally {
+                    setLoading(false);
+                }
+            } else {
+                console.log("User is not logged in");
+                setLoading(false);
+            }
+        });
+    };
+
+    const fetchPatientData = async () => {
+        try {
+            if (!patientId) {
+                console.log('Patient ID not provided');
+                setLoading(false);
+                return;
+            }
+            console.log("Fetching data for patientId:", patientId);
+            const patientDoc = doc(db, 'patients', patientId);
+            const patientSnap = await getDoc(patientDoc);
+            if (patientSnap.exists()) {
+                console.log("Patient data:", patientSnap.data());
+                setPatientData(patientSnap.data());
+            } else {
+                console.log('Patient data not found');
+            }
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching patient data:', error);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        console.log("Component mounted with patientId:", patientId);
+        fetchUserData();
+        fetchPatientData();
+    }, [patientId]);
+
+    if (loading) {
+        return (
+            <div className="loader-container">
+                <ClipLoader size={50} color={"#123abc"} loading={loading} />
+            </div>
+        );
+    }
+
+    if (!userDetails) {
+        return <div>User not authenticated or data not found</div>;
+    }
+
+    if (!patientData) {
+        return <div>Patient data not found</div>;
+    }
+
+    const columns = [
+        {
+            name: 'Nama File',
+            selector: row => row.name,
+            sortable: true,
+        },
+        {
+            name: 'Tanggal',
+            selector: row => row.date,
+            sortable: true,
+        },
+        {
+            name: 'Aksi',
+            cell: row => <button className='btn-download'>Download</button>,
+        },
+    ];
+
+    const data = [
+        {
+            id: 1,
+            name: 'Scan1.png',
+            date: '2023-04-23',
+        },
+        {
+            id: 2,
+            name: 'Scan2.png',
+            date: '2023-04-24',
+        },
+    ];
+
+    return (
+        <React.Fragment>
+            <div className='App'>
+                <div className='header-db'>
+                    <div className='top-headers'>
+                        <div className='list-tops'>
+                            <div className='notification-tops'>
+                                <IoNotificationsSharp className='icon-headers' />
+                            </div>
+                            <div className='image-tops'>
+                                <img src={userDetails.photo} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='name-headers'>
+                        <p>
+                            Form Pneumonia
+                        </p>
+                    </div>
+                    <div className='container-pages'>
+                        <div className='title-container'>
+                            <ul>Data Pasien</ul>
+                            <p>- Upload Scan</p>
+                        </div>
+                        <div>
+                            {patientData.fullName}
+                        </div>
+                        <div className='line-container' />
+                        <div className='form-upload'>
+                            <input type='file' onChange={handleFileChange} />
+                            {preview && <img src={preview} alt="Preview" className='preview-image' />}
+                            <button className='btn-upload'>
+                                <FaUpload />
+                                <span>Upload</span>
+                            </button>
+                        </div>
+                        <div className='data-table'>
+                            <DataTable
+                                columns={columns}
+                                data={data}
+                                pagination
+                            />
+                        </div>
+                    </div>
+                    <br />
+                    <button className='btn-form-pneumonia'>
+                        Selanjutnya
+                    </button>
+                </div>
+            </div>
+        </React.Fragment>
+    );
+}
+
+export default FormPneumonia;

@@ -1,0 +1,13 @@
+:root{
+    --primary-color : #0074B6;
+    --button-color : #86B6F6;
+    --blue-color : #C4DDFF;
+    --text-color : #151515;
+    --grey-color : #ABABAB;
+    --subtext-color : #4A4A4A;
+  }
+
+  .login-admin{
+    height: 100vh;
+    background: var(--primary-color);
+}

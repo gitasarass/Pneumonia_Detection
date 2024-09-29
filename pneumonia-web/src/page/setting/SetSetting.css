@@ -1,0 +1,158 @@
+:root{
+    --primary-color : #0074B6;
+    --button-color : #86B6F6;
+    --blue-color : #C4DDFF;
+    --text-color : #151515;
+    --grey-color : #ABABAB;
+    --subtext-color : #4A4A4A;
+  }
+
+
+.row-container-setting {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-top: 1rem;
+}
+
+.column-container-setting {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-right: 10px;
+    margin-bottom: 80px;
+}
+
+.column-container-setting-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-right: 10px;
+    margin-bottom: 80px;
+}
+
+.data-setting p {
+    margin-left: 30px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--subtext-color);
+}
+
+.form-setting {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 10px;
+    width: 450px;
+    height: 50px;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid var(--blue-color);
+    outline: none;
+}
+
+.form-setting p {
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 13px;
+}
+
+.form-setting input {
+    width: 400px;
+    margin-left: 30px;
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.form-setting select {
+    width: 380px;
+    margin-left: 30px;
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+
+.container-button{
+    margin-top: 50px;
+    margin-bottom: 300px;
+    align-items: center;
+}
+
+.btn-form-patient {
+    margin-left: 550px;
+    background-color: var(--button-color);
+    width: 200px;
+    height: 50px;
+    color: #fff;
+}
+
+.btn-form-patient:hover {
+    background-color: var(--primary-color);
+}
+
+.column-image-profile-user{
+    display: flex;
+    flex-direction: column;
+}
+
+.image-profile-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    margin-top: 30px;
+}
+
+.image-profile-container img {
+        width: 200px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+}
+
+.btn-edit-profil {
+    background-color: var(--blue-color);
+    height: 40px;
+    width: 120px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin-left: 505px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.btn-edit-profil:hover{
+    background-color: var(--button-color);
+    color: #fff;
+}
+
+
+.btn-save-profil-users {
+    background-color: var(--button-color);
+    height: 50px;
+    width: 200px;
+    font-size: 16px;
+    margin-left: 520px;
+    margin-top: 0px;
+    margin-bottom: 100px;
+    color: #fff;
+}
+
+.btn-save-profil-users:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
+

@@ -1,0 +1,237 @@
+:root{
+    --primary-color : #0074B6;
+    --button-color : #86B6F6;
+    --blue-color : #C4DDFF;
+    --text-color : #151515;
+    --grey-color : #ABABAB;
+    --subtext-color : #4A4A4A;
+}
+
+.container-pagess {
+    margin-left: 1180px;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 5px 10px 10px 0.1px #f5f5f5;  
+}
+
+
+.data-patient p {
+    margin-left: 30px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--subtext-color);
+}
+
+.data-patients p {
+    margin-left: 80px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--subtext-color);
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    margin-top: 1rem;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.form-data {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 10px;
+    width: 450px;
+    height: 50px;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid var(--blue-color);
+    outline: none;
+}
+
+.form-data p {
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+.form-datas {
+    display: flex;
+    margin-left: 80px;
+    margin-top: 10px;
+    width: 960px;
+    height: 50px;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid var(--blue-color);
+    outline: none;
+}
+
+.form-datas p {
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+
+.data-texts {
+    margin-left: 20px;
+}
+
+.btn-form-pneumonia {
+    margin-left: 550px;
+    background-color: var(--button-color);
+    width: 200px;
+    height: 50px;
+    color: #fff;
+}
+
+.btn-form-pneumonia:hover {
+    background-color: var(--primary-color);
+}
+
+
+.btn-next-datas {
+    background-color: var(--primary-color);
+    height: 50px;
+    padding: 0 2rem;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: 1050px;
+}
+
+.btn-next-datas a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.header-check{
+    height: 1250px;
+}
+
+.row-button {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 300px;
+}
+
+.btn-form-before {
+    margin-left: 780px;
+    background-color: var(--blue-color);
+    width: 200px;
+    height: 50px;
+    color: #fff;
+}
+
+.btn-form-before:hover {
+    background-color: var(--primary-color);
+}
+
+.btn-form-next {
+    margin-left: 10px;
+    background-color: var(--button-color);
+    width: 200px;
+    height: 50px;
+    color: #fff;
+}
+
+.btn-form-next:hover {
+    background-color: var(--primary-color);
+}
+
+.custom-tables {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-header {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.custom-row {
+    border-bottom: 1px solid #ddd;
+}
+
+.custom-row:hover {
+    background-color: #f5f5f5;
+}
+
+.image-uploaded {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-file {
+    display: none;
+}
+
+.custom-file-upload {
+    background-color: var(--blue-color);
+    color: var(--subtext-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.custom-file-upload:hover {
+    background-color: var(--button-color);
+    color: #fff;
+}
+
+.image-uploaded{
+    border: 1px solid var(--blue-color);
+    border-radius: 15px;
+    margin: 20px 20px 20px 20px;
+}
+
+.previews-image {
+    width: 300px;
+    height: auto;
+    margin-top: 40px;
+}
+
+.icons-uploaded {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin-top: 50px;
+    color: var(--primary-color);
+}
+
+.loading-pagesm {
+    height: 100vh;
+}
+
+
+.data-container {
+    margin-left: 30px;
+    margin-right: 30px; 
+    margin-top: 20px;
+}

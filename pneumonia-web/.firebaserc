@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "xray-pneumonia2024",
+    "dev": "xray-pneumonia2024"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

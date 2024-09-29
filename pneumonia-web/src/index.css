@@ -1,0 +1,17 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global CSS untuk menghindari scroll horizontal */
+html, body {
+    max-width: 100%;   /* Mencegah elemen melampaui lebar viewport */
+    overflow-x: hidden; /* Menghilangkan scroll horizontal */
+    margin: 0;
+    padding: 0;
+}
+
+/* Mengatur ukuran elemen agar tidak menyebabkan scroll */
+* {
+    box-sizing: border-box;
+}
